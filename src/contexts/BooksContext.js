@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 const initialState = {
   books: [],
+  searchResults: [],
 };
 
 const BooksContext = createContext([initialState, () => {}]);

@@ -1,19 +1,17 @@
 import React from 'react';
-import { SectionHeader } from '../styled-components';
+import { Header } from 'semantic-ui-react';
 import BookList from './BookList';
 import BookListPlaceholder from './BookListPlaceholder';
 import useBooks from '../../hooks/useBooks';
+import useNavigation from '../../hooks/useNavigation';
 
 const MyBooks = () => {
-  const { books, addBook } = useBooks();
-  console.log('Using books', books, addBook);
-  const onAddBook = () => {
-    addBook({ title: 'My New Book', description: 'Some random description' });
-  };
-
+  const { books } = useBooks();
+  const { navigate } = useNavigation();
+  const onAddBook = () => navigate('add-book');
   return (
     <div>
-      <SectionHeader>My Books</SectionHeader>
+      <Header content="My Books" />
       {!books.length && <BookListPlaceholder onAddBook={onAddBook} />}
       {!!books.length && <BookList onAddBook={onAddBook} />}
     </div>

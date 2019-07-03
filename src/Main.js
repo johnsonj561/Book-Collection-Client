@@ -6,6 +6,7 @@ import DashboardPage from './pages/DashboardPage';
 import NavBar from './components/navigation/NavBar';
 import GlobalContextProvider from './contexts/GlobalContextProvider';
 import BooksPage from './pages/BooksPage';
+import AddBookPage from './pages/AddBookPage';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={DashboardPage} />
           <Route exact path="/my-books" component={BooksPage} />
+          <Route exact path="/add-book" component={AddBookPage} />
           <Redirect to="/" />
         </Switch>
 

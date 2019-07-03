@@ -14,9 +14,9 @@ const navItems = [
     label: 'My Books',
   },
   {
-    id: 'my-wishlist',
-    path: 'my-wishlist',
-    label: 'My Wishlist',
+    id: 'add-book',
+    path: 'add-book',
+    label: 'Add a Book',
   },
 ];
 

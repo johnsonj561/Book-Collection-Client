@@ -1,5 +1,7 @@
 import _ from 'lodash';
 import httpService from './http';
+import config from './config';
+
 
 const TOKEN_STORAGE_KEY = 'my-books-token';
 
@@ -43,8 +45,9 @@ export const isAuthenticated = () => !!window.localStorage.getItem(TOKEN_STORAGE
  * @return {AsyyncFunction} that resolves to parsed JWT token
  */
 export const loginUser = async (username, password) => {
+  const endpoint = config.getEnv('API_HOST') + config.getEnv('AUTH_ENDPOINT');
   const data = { username, password };
-  const resp = await httpService.post('http://localhost:3000/auth', data);
+  const resp = await httpService.post(endpoint, data);
   const token = _.get(resp, 'data.token');
   if (!token) {
     return undefined;

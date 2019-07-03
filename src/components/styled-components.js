@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const PageContainer = styled.div`
-  padding: 10px 50px;
+  padding: 10px 25px;
   flex: 1;
 `;
 
@@ -29,6 +29,11 @@ export const FormContainer = styled.div`
 `;
 
 export const NavLabel = styled.span`
-  padding: 10px 10px;
-  font-size: 22px;
+  padding: 5px 8px;
+  font-size: 20px;
+`;
+
+export const GridSection = styled.div`
+  padding: 10px;
+  padding-bottom: 20px;
 `;

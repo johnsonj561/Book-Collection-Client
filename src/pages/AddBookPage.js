@@ -1,16 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 import { PageContainer, GridSection } from '../components/styled-components';
-import MyBooks from '../components/books/MyBooks';
+import BookForm from '../components/books/BookForm';
+import BookSearchResults from '../components/books/BookSearchResults';
 
-const HomePage = () => (
+
+const BooksPage = () => (
   <PageContainer>
     <DashboardGrid>
       <GridSection>
-        <MyBooks />
+        <BookForm />
       </GridSection>
       <GridSection>
-        <MyBooks />
+        <BookSearchResults />
       </GridSection>
     </DashboardGrid>
   </PageContainer>
@@ -19,11 +21,6 @@ const HomePage = () => (
 const DashboardGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  @media (max-width: 750px) {
-    & {
-      grid-template-columns: 1fr;
-    }
-  }
 `;
 
-export default HomePage;
+export default BooksPage;

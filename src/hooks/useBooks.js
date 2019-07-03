@@ -13,6 +13,7 @@ const useBooks = () => {
 
   return {
     books: state.books,
+    searchResults: state.searchResults,
     addBook,
   };
 };

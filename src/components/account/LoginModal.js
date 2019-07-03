@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Form, Modal, Button, Header, Icon, Message,
+  Form, Modal, Button, Header, Icon, Message, Grid, Divider,
 } from 'semantic-ui-react';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
@@ -50,49 +50,74 @@ const LoginModal = (props) => {
 
   return (
     <StyledModal open={open} closeIcon onClose={onClose}>
-      <Header icon="sign-in" content="Login to Your Account" />
-
-      {/* Input Fields */}
       <Modal.Content>
-        <Form action="" onSubmit={onSubmit}>
-          <Form.Input
-            autoFocus
-            label="Username"
-            value={formData.username}
-            onChange={onInputChange('username')}
-          />
-          <Form.Input
-            label="Password"
-            type="password"
-            value={formData.password}
-            onChange={onInputChange('password')}
-          />
-          <InvisibleButton type="submit" />
-        </Form>
-        <StyledMessage
-          success={message.success}
-          error={message.error}
-          size="small"
-          hidden={!message.content}
-        >
-          <Message.Content>
-            {message.content}
-          </Message.Content>
-        </StyledMessage>
+        <Grid columns={2} relaxed="very" stackable>
+          <Grid.Column>
+            <Form action="" onSubmit={onSubmit}>
+              <Form.Input
+                icon="user"
+                iconPosition="left"
+                autoFocus
+                label="Username"
+                placeholder="Username"
+                value={formData.username}
+                onChange={onInputChange('username')}
+              />
+              <Form.Input
+                icon="lock"
+                iconPosition="left"
+                label="Password"
+                type="password"
+                value={formData.password}
+                onChange={onInputChange('password')}
+              />
+              <InvisibleButton type="submit" />
+            </Form>
+            <Button.Group widths="2">
+              <Button type="button" color="red" onClick={onClose} disabled={loading}>
+                <Icon name="close" />
+                Cancel
+              </Button>
+              <Button type="button" color="green" onClick={onSubmit} loading={loading} disabled={loading}>
+                <Icon name="checkmark" />
+                Submit
+              </Button>
+            </Button.Group>
+          </Grid.Column>
+
+          {!message.content && (
+            <Grid.Column verticalAlign="middle">
+              <StackedButtonGroup>
+                <Button content="Create An Account" icon="signup" />
+                <Button content="Recover Your Password" icon="signup" />
+                <Button color="facebook">
+                  <Icon name="facebook" />
+                    Register With Facebook
+                </Button>
+              </StackedButtonGroup>
+            </Grid.Column>
+          )}
+
+          {!!message.content && (
+            <Grid.Column verticalAlign="middle">
+              <StyledMessage
+                success={message.success}
+                error={message.error}
+                size="small"
+                hidden={!message.content}
+              >
+                <Message.Content>
+                  {message.content}
+                </Message.Content>
+              </StyledMessage>
+            </Grid.Column>
+          )}
+
+        </Grid>
+
+        <Divider vertical>Or</Divider>
+
       </Modal.Content>
-
-      {/* Button Group */}
-      <StyledActions>
-        <Button type="button" color="red" onClick={onClose} disabled={loading}>
-          <Icon name="close" />
-          Cancel
-        </Button>
-        <Button type="button" color="green" onClick={onSubmit} loading={loading} disabled={loading}>
-          <Icon name="checkmark" />
-          Submit
-        </Button>
-      </StyledActions>
-
     </StyledModal>
   );
 };
@@ -108,18 +133,20 @@ LoginModal.defaultProps = {
 
 const StyledModal = styled(Modal)`
   &&& {
-    width: 500px;
+    width: 600px;
   }
 `;
 
-const StyledActions = styled(Modal.Actions)`
-  &&&& {
-    text-align: center;
-  }
+const StackedButtonGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+  justify-content: space-between;
 `;
 
 const StyledMessage = styled(Message)`
   &&& {
+
   }
 `;
 
